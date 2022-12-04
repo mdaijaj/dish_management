@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+*{
+    list-style: none;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+
+body{
+    background: #f5f6fa;
+}
+
+.wrapper .sidebar{
+    background: rgb(152, 180, 196);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 400px;
+    height: 100%;
+    padding: 20px 0;
+    transition: all 0.5s ease;
+}
+
+.selection{
+    padding: 25px;
+  }
+.main button{
+    text-align: right;
+}
+.pagination{
+    padding-top: 50px;
+}
+
+.question{
+    align-items: center;
+}
+
+.question h5{
+    text-align: center;
+}
+.wrapper{
+    justify-content: center;
+    flex: content;
+}
