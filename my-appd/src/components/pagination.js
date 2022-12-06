@@ -3,8 +3,6 @@ import _ from "lodash";
 import * as ReactBootStrap from 'react-bootstrap'
 import "../company.css"
 import axios from 'axios'
-import { NavLink } from "react-router-dom";
-import EditInfo from "./companyedit";
 
 const pageSize = 6
 const Page = (props) => {
@@ -59,8 +57,7 @@ const Page = (props) => {
                         paginationpost.map((post, index) => (
                             <div 
                                 className="question" 
-                                onClick={() => props.buttonShow(true)}
-                                style={{ backgroundColor: "skyblue", textAlign: "center", borderRadius: "10px", width: "350px"  }}>
+                                onClick={() => props.buttonShow(true)} >
                                 <h5 onClick={() => props.itemEventId(`${post._id}`)}> {`${index + 1}.   ${post.dishName} `}</h5>
                             </div>
                             

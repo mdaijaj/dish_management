@@ -1,11 +1,12 @@
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Select from 'react-select';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const EditInfo=(props)=>{
     const [dishdata, setDishdata]= useState("")
+    const [dishname, setDishname]= useState()
 
     
 
@@ -20,14 +21,13 @@ const EditInfo=(props)=>{
         const dishInf={dishName, ingrediants}
         console.log("aijajdish", dishInf)
         let response;
-        console.log("aijajkhan", props.elementId)
+        console.log("aijajkhan", props)
         if(props.elementId){
             response= await axios.put(`/updatedish/${props.elementId}`, {
                 dishName: dishInf.dishName
             })
             console.log("response", response)
             toast.success('updated successfully', {autoClose:1000})
-
         }else{
             response= await axios.post('/adddish', dishInf)
             console.log("res", response)
@@ -44,19 +44,34 @@ const EditInfo=(props)=>{
         { value: 'lightPink', label: 'lightPink' },
     ]
 
+    const getElmentItem= async()=>{
+        if(props.elementId){
+            let response=await axios.get(`/dishdetails/${props.elementId}`)
+            console.log("response", response)
+            setDishname(response.data.data.dishName)
+        }
+    }
+  
+
+
+    useEffect(()=>{
+        getElmentItem()
+    }, [props.elementId])
+
+
     return (
         <>
         <div className="container">
                         <div className="col-6">
-
+                        {console.log("aijajdishname", dishname)}
                         <div className="main" style={{ textAlign: "left", margin: "auto", padding: "30px 30px" }}>
                             <label> Name : </label> <br />
                             <input type="text"
                                 name="dishName"
                                 placeholder="Enter question here.."
-                                // value={values.names}
+                                // value={dishname}
                                 onChange={handleInputs} />
-                            <br />
+                            <br/><br/>
 
                             <label> Muliti Items </label><br />
                             <Select 

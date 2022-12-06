@@ -43,7 +43,7 @@ const allDishs= async (req, res)=>{
 const dishDetails= async (req, res)=>{
     try{
         console.log(req.params.id)
-        const restData= await Dish.find({
+        const restData= await Dish.findById({
             _id: req.params.id
         })
         console.log("restData", restData)
@@ -64,12 +64,13 @@ const dishDetails= async (req, res)=>{
 const updateDish= async (req, res)=>{
     try{
         console.log("req.body", req.body)
+        let dishNames=req.body.dishName
 
-        const updateData= await Dish.findByIdAndUpdate({_id: req.params.id}, {
-            $set: req.body
-        })
-        console.log("updateData", updateData)
-        return res.send({status: "update data successfully! ", "result": updateData})
+        const product= await Dish.findById({_id: req.params.id});
+        product.dishName= dishNames;
+        await product.save({validateBeforeSave: false});
+        console.log("updateData", product)
+        return res.send({status: "update data successfully! ", "result": product})
     }
     catch(err){
         console.log(err.message)
