@@ -39,10 +39,10 @@ const Company = () => {
                     <div className="form-outline">
                         <input id="search-input" 
                             type="search" className="form-control" 
-                            placeholder="Search" 
+                            placeholder="Search Dish..." 
                             onChange={(e) => setSearchField(e.target.value)}
-                            style={{width:"250px", margin: "auto"}}  />
-                        <button onClick={searchdish}>Search<i class="fas fa-search"></i></button>
+                            style={{width:"250px", margin: "auto"}}  /><br/>
+                        <button className="btn btn-info" onClick={searchdish}>Search</button>
                         
                         {console.log("page", filterdata)}
                         <div className="pagination">
